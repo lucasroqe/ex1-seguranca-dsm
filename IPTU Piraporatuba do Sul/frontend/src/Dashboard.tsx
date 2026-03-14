@@ -145,15 +145,11 @@ function Dashboard() {
         <ul>
           {comentarios.map((comentario, index) => (
             <li key={index}>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: `
-                  <strong>Usuário:</strong> ${comentario.usuario_id}
-                  <br/>
-                  <strong>Mensagem:</strong> ${comentario.texto}
-                `,
-                }}
-              />
+              <div>
+                <strong>Usuário:</strong> {comentario.usuario_id}
+                <br />
+                <strong>Mensagem:</strong> {comentario.texto}
+              </div>
             </li>
           ))}
         </ul>
