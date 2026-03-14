@@ -25,11 +25,11 @@ export const novoLogin = async (req: Request, res: Response) => {
     const iptuResult = await db.query(queryNomeIpuExiste);
 
     if (iptuResult.rowCount && iptuResult.rowCount > 0) {
-        const query = `INSERT INTO usuario (email, senha, nome, tipo_usuario_id) VALUES ('${email}', '${password}', '${nome}', 3)`;
+        const query = `INSERT INTO usuario (email, senha, nome, tipo_usuario_id) VALUES ($1, $2, $3, 3)`;
 
         console.log(`Query Executada: ${query}`);
 
-        const result = await db.query(query);
+        const result = await db.query(query, [email, password, nome]);
         
         const queryIdUsuario = `SELECT id FROM usuario WHERE email = '${email}' AND senha = '${password}'`;
         const resultIdUsuario = await db.query(queryIdUsuario);
