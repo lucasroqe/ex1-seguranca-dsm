@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import db from "../database";
+import xss from "xss";
 
 export const login = async (req: Request, res: Response) => {
     const { email, password } = req.body;
@@ -76,7 +77,7 @@ export const getIptuPorIdUsuario = async (req: Request, res: Response) => {
     }
 };
 export const getQRCodeOrCodBarras = async (req: Request, res: Response) => {
-    const tipo = req.query.tipo as string;
+    const tipo = xss(req.query.tipo as string);
      let codigoHtml = "";
 
   if (tipo === "codigoDeBarras") {
